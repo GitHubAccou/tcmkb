@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="menu">
+    <select id="ajaxListAll" resultType='java.util.Map'>
+    	select * from menu 
+    	<where>
+    		1=1
+    		<if test="path!=null">
+    			`path`=#{path}
+    		</if>
+    		<if test="name!=null">
+    			`name`=#{name}
+    		</if>
+    		<if test="parentPath!=null">
+    			`path` like concat(#{parentPath},'%');
+    		</if>
+    	</where>
+    	
+    	limit #{offset},#{limit}
+    </select>
+    <select id="ajaxListAllTotal" resultType='java.util.Map'>
+    	select count(*) cnt from menu 
+    	<where>
+    		1=1
+    		<if test="path!=null">
+    			`path`=#{path}
+    		</if>
+    		<if test="name!=null">
+    			`name`=#{name}
+    		</if>
+    		<if test="parentPath!=null">
+    			`path` like concat(#{parentPath},'%');
+    		</if>
+    	</where>
+    </select>
+    <select id="ajaxAvailableParentNodes" resultType='java.util.Map'>
+    	select * from menu where `url` is null or length(`url`)=0;
+   	</select>
+   	<select id="getUsedPaths" resultType='java.util.Map'>
+   		select path from menu where path like concat(#{path},'-_');
+   	</select>
+   	<insert id="add">
+   		insert into menu values(#{path},#{name},#{url},#{desc},#{icon},#{createTime},#{createUser},null,null);
+   	</insert>
+   	<delete id="del">
+   		delete from menu where path in
+   		<foreach item="item" index="index" collection="paths" open="(" separator="," close=")">
+		#{item}
+		</foreach>
+   	</delete>
+   	<update id="update">
+   		update `menu` set
+   		<if test="path!=null">
+	   		<if test="name !=null">
+	   			`name`=#{name},
+	   		</if>
+	   		<if test="url !=null">
+	   			`url`=#{url},
+	   		</if>
+	   		<if test="icon !=null">
+	   			`icon`=#{icon},
+	   		</if>
+	   		<if test="desc !=null">
+	   			`desc`=#{desc},
+	   		</if>
+	   		<if test="updateUser !=null">
+	   			`updateUser`=#{updateUser},
+	   		</if>
+	   		<if test="updateTime !=null">
+	   			`updateTime`=#{updateTime}
+	   		</if>
+	   		<where>
+	   			`path`=#{path}
+	   		</where>
+   		</if>
+   	</update>
+</mapper>

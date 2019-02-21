@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  default-autowire="byName"
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">    
+   
+   
+    <bean id="usersService" class="com.tcmkb.service.impl.UsersServiceImpl"/>
+    <bean id='roleAndMenuService' class='com.tcmkb.service.impl.RoleAndMenuServiceImpl'/>
+    <bean id='menuService' class='com.tcmkb.service.impl.MenuServiceImpl'/>
+    <bean id='rolesService' class='com.tcmkb.service.impl.RolesServiceImpl'/>
+    <bean id='provinceService' class='com.tcmkb.service.impl.ProvinceServiceImpl'/>
+    <bean id='userAndRoleService' class='com.tcmkb.service.impl.UserAndRoleServiceImpl'/>
+    <bean id="projectsService" class='com.tcmkb.service.impl.ProjectsServiceImpl'/>
+    <bean id="userProjectService" class='com.tcmkb.service.impl.UserProjectServiceImpl'/>
+    <bean id="msgService" class='com.tcmkb.service.impl.MsgServiceImpl'/>
+    <bean id="noticeService" class='com.tcmkb.service.impl.NoticeServiceImpl'/>
+</beans>

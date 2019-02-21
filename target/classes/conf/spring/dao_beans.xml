@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName"
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">    
+   <bean id="baseDao" class="com.tcmkb.base.BaseDao"/>
+   
+    <bean id="usersDao" class="com.tcmkb.dao.impl.UsersDaoImpl"/>
+    <bean id="roleAndMenuDao" class='com.tcmkb.dao.impl.RoleAndMenuDaoImpl'/>
+    <bean id="menuDao" class='com.tcmkb.dao.impl.MenuDaoImpl'/>
+    <bean id="rolesDao" class='com.tcmkb.dao.impl.RolesDaoImpl'/>
+    <bean id='provinceDao' class='com.tcmkb.dao.impl.ProvinceDaoImpl'/>
+    <bean id="userAndRoleDao" class='com.tcmkb.dao.impl.UserAndRoleDaoImpl'/>
+    <bean id="projectsDao" class='com.tcmkb.dao.impl.ProjectsDaoImpl'/>
+    <bean id="userProjectDao" class='com.tcmkb.dao.impl.UserProjectDaoImpl'/>
+    <bean id="msgDao" class='com.tcmkb.dao.impl.MsgDaoImpl'/>
+    <bean id="noticeDao" class='com.tcmkb.dao.impl.NoticeDaoImpl'/>
+</beans>

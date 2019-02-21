@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+    <select id="ajaxListAll" resultType="java.util.Map" >
+    	select * from notice  
+    	<where>
+    		1=1
+	    	<if test="id !=null">
+	    		and `id`=#{id}
+	    	</if>
+    	</where>
+    	order by `createTime` desc
+    	<if test="offset!=null">
+    		<if test="limit!=null">
+    			limit #{offset},#{limit}
+    		</if>
+    	</if>
+    </select>
+    <select id="ajaxListAllCount" resultType="java.util.Map" >
+    	select count(*) cnt from notice  
+    	<where>
+    		1=1
+	    	<if test="id !=null">
+	    		and `id`=#{id}
+	    	</if>
+    	</where>
+    </select>
+    <insert id="add">
+    	insert into `notice` values (#{id},#{title},#{content},now(),#{createUser});
+    </insert>
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roles">
+    <select id="ajaxListAll" resultType="java.util.Map" >
+       select a.*,GROUP_CONCAT(c.username) users from role a left join user_role b on a.id=b.roleId left join users c  on b.userId=c.id group by a.id
+       <where>
+       	<if test="name!=null">
+       		a.`name`=#{name}
+       	</if>
+       </where>
+       limit #{offset},#{limit}
+    </select>
+    <select id="ajaxListAllTotal" resultType="java.util.Map" >
+       select count(*) cnt from role 
+       <where>
+       	<if test="name!=null">
+       		a.`name`=#{name}
+       	</if>
+       </where>
+    </select>
+    <!-- 查询可分配角色的用户 -->
+    <select id="ajaxAvailableUsers" resultType='java.util.Map'>
+    	select * from users where `id` not in(select userId from user_role);
+    </select>
+    <select id="selectUsersByRoleId" resultType='java.util.Map'>
+    	select * from `users` a where `id` in (select userId from `user_role` where `roleId`=#{roleId});
+    </select>
+    <insert id="add">
+    	insert into `role` values(#{id},#{name},#{desc},#{createTime},#{createUser},null,null);
+    </insert>
+    <delete id="del">
+    	delete from `role` where id in
+    	<foreach item="item" open="(" close=")" separator="," collection="ids">
+    		#{item}
+    	</foreach>
+    </delete>
+    <select id="getRoleByUserId" resultType="java.util.Map">
+    	select * from user_role where userId=#{userId} limit 0,1
+    </select>
+    <update id="update">
+    	update `role` set 
+    	<if test="id!=null">
+	    	<if test="name!=null">
+	    		`name`=#{name},
+	    	</if> 
+	    	<if test="desc!=null">
+	    		`desc`=#{desc},
+	    	</if>
+	    	<if test="updateUser!=null">
+	    		`updateUser`=#{updateUser},
+	    	</if> 
+	    	<if test="updateUser!=null">
+	    		`updateTime`=#{updateTime}
+	    	</if>
+	    	<where>
+	    		`id`=#{id}
+	    	</where>
+    	</if>
+    </update>
+</mapper>

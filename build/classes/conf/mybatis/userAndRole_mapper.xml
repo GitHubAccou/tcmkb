@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userAndRole">
+    <insert id="add">
+    	insert into user_role values(#{userId},#{roleId},#{createTime},#{createUser},null,null);
+    </insert>
+    <select id="getRoleByUserId" resultType="java.util.Map">
+    	select * from user_role where userId=#{userId} order by updateTime desc,createTime desc limit 0,1;
+    </select>
+    <delete id="delete">
+    	delete from user_role 
+    	<where>
+    		<if test="userIds!=null">
+    			`userId` in
+    			<foreach item="item" open="(" close=")" separator="," collection="userIds">
+    				#{item}
+    			</foreach>
+    		</if>
+    		<if test="roleIds!=null">
+    		   and `roleId` in
+    			<foreach item="item" open="(" close=")" separator="," collection="roleIds">
+    				#{item}
+    			</foreach>
+    		</if>
+    	</where>
+    </delete>
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="projects">
+    <select id="ajaxListAll" resultType="java.util.Map" >
+        select *,b.name provinceName from project a left join province b on a.provinceId=b.id 
+        <where>
+        	1=1
+        	<if test='id!=null'>
+        	  and `id`=#{id}
+        	</if>
+        	<if test='provinceId!=null'>
+        	  and `provinceId`=#{provinceId}
+        	</if>
+        </where>
+        limit #{offset},#{limit};
+    </select>
+    <select id="ajaxListAllTotal" resultType="java.util.Map" >
+         select count(*) cnt from (select a.*, b.name provinceName from project a left join province b on a.provinceId=b.id )c
+        <where>
+        	1=1
+        	<if test='id!=null'>
+        	  and `id`=#{id}
+        	</if>
+        	<if test='provinceId!=null'>
+        	  and `provinceId`=#{provinceId}
+        	</if>
+        </where>
+    </select>
+    <insert id="add">
+    	insert into project values(#{id},#{type},#{name},#{provinceId},#{endTime},#{desc},#{status},#{detach});
+    </insert>
+	<select id="getAvailableProjects" resultType="java.util.Map" >
+		<!--  select * from project where provinceId=#{provinceId} and now() &lt; endTime;-->
+		select * from project where provinceId=#{provinceId} ;
+	</select>
+	<select id="approveList" resultType="java.util.Map">
+		select * from `user_projects` a,`project` b  
+		<where>
+			<choose>
+				<when test="provinceId==-1">a.projectId=b.id and (a.status = 3 or a.status=4)</when>
+				<otherwise>a.projectId=b.id and b.provinceId=#{provinceId} and (a.status=1 or a.status=2)</otherwise>
+			</choose>
+		</where>
+		limit #{offset},#{limit}
+	</select>
+	
+	<select id="approveListTotal" resultType="java.util.Map">
+		select count(*) cnt from `user_projects`  a,`project` b  
+		<where>
+			<choose>
+				<when test="provinceId==-1">a.projectId=b.id and (a.status = 3 or a.status=4)</when>
+				<otherwise>a.projectId=b.id and b.provinceId=#{provinceId} and (a.status=1 or a.status=2)</otherwise>
+			</choose>
+		</where>
+	</select>
+</mapper>

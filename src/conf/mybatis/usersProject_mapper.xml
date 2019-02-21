@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userProjects">
+    <select id="ajaxListAll" resultType="java.util.Map" >
+        select a.*,b.`name` projectName,b.`type` projectType,b.`endTime` from  `user_projects` a left join `project` b on a.`projectId`=b.`id` where a.`userId`=#{userId};
+    </select>
+    <select id="selectUnFinishedCount" resultType="java.util.Map" >
+    	select count(*) cnt from `user_projects` where userId=#{userId} and `status` &lt;=4; 
+    </select>
+    <insert id="add">
+    	insert into `user_projects` values(
+    	#{userId},
+    	#{projectId},
+    	1,
+    	#{serviceType},
+    	#{mainCountry},
+    	#{others},
+    	#{managerName},
+    	#{managerPosition},
+    	#{managerCompany},
+    	#{managerPhone},
+    	#{managerEmail},
+    	#{total},
+		#{englishTotal},
+		<choose>
+			<when test="BJFirstFirstPerson !=null">#{BJFirstFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFirstFirstMoney !=null">#{BJFirstFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFirstSecondPerson !=null">#{BJFirstSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFirstSecondMoney !=null">#{BJFirstSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFirstThirdPerson !=null">#{BJFirstThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFirstThirdMoney !=null">#{BJFirstThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJSecondFirstPerson !=null">#{BJSecondFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJSecondFirstMoney !=null">#{BJSecondFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJSecondSecondPerson !=null">#{BJSecondSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJSecondSecondMoney !=null">#{BJSecondSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJSecondThirdPerson !=null">#{BJSecondThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJSecondThirdMoney !=null">#{BJSecondThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJThirdFirstPerson !=null">#{BJThirdFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJThirdFirstMoney !=null">#{BJThirdFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJThirdSecondPerson !=null">#{BJThirdSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJThirdSecondMoney !=null">#{BJThirdSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJThirdThirdPerson !=null">#{BJThirdThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJThirdThirdMoney !=null">#{BJThirdThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFourthFirstPerson !=null">#{BJFourthFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFourthFirstMoney !=null">#{BJFourthFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFourthSecondPerson !=null">#{BJFourthSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFourthSecondMoney !=null">#{BJFourthSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFourthThirdPerson !=null">#{BJFourthThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="BJFourthThirdMoney !=null">#{BJFourthThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFirstFirstPerson !=null">#{PXFirstFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFirstFirstMoney !=null">#{PXFirstFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFirstSecondPerson !=null">#{PXFirstSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFirstSecondMoney !=null">#{PXFirstSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFirstThirdPerson !=null">#{PXFirstThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFirstThirdMoney !=null">#{PXFirstThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXSecondFirstPerson !=null">#{PXSecondFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXSecondFirstMoney !=null">#{PXSecondFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXSecondSecondPerson !=null">#{PXSecondSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXSecondSecondMoney !=null">#{PXSecondSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXSecondThirdPerson !=null">#{PXSecondThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXSecondThirdMoney !=null">#{PXSecondThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXThirdFirstPerson !=null">#{PXThirdFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXThirdFirstMoney !=null">#{PXThirdFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXThirdSecondPerson !=null">#{PXThirdSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXThirdSecondMoney !=null">#{PXThirdSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXThirdThirdPerson !=null">#{PXThirdThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXThirdThirdMoney !=null">#{PXThirdThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFourthFirstPerson !=null">#{PXFourthFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFourthFirstMoney !=null">#{PXFourthFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFourthSecondPerson !=null">#{PXFourthSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFourthSecondMoney !=null">#{PXFourthSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFourthThirdPerson !=null">#{PXFourthThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFourthThirdMoney !=null">#{PXFourthThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFifthFirstPerson !=null">#{PXFifthFirstPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFifthFirstMoney !=null">#{PXFifthFirstMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFifthSecondPerson !=null">#{PXFifthSecondPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFifthSecondMoney !=null">#{PXFifthSecondMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFifthThirdPerson !=null">#{PXFifthThirdPerson},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="PXFifthThirdMoney !=null">#{PXFifthThirdMoney},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYFirstFisrt !=null">#{KYFirstFisrt},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYFirstSecond !=null">#{KYFirstSecond},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYFirstThird !=null">#{KYFirstThird},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYSecondFirst !=null">#{KYSecondFirst},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYSecondSecond !=null">#{KYSecondSecond},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYSecondThird !=null">#{KYSecondThird},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYThirdFirst !=null">#{KYThirdFirst},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYThirdSecond !=null">#{KYThirdSecond},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYThirdThird !=null">#{KYThirdThird},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYFourthFirst !=null">#{KYFourthFirst},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYFourthSecond !=null">#{KYFourthSecond},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="KYFourthThird !=null">#{KYFourthThird},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="CYFourthFirst !=null">#{CYFourthFirst},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="CYFourthSecond !=null">#{CYFourthSecond},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="CYFourthThird !=null">#{CYFourthThird},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="WHFourthFirst !=null">#{WHFourthFirst},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="WHFourthSecond !=null">#{WHFourthSecond},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="WHFourthThird !=null">#{WHFourthThird},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="QTFourthFirst !=null">#{QTFourthFirst},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="QTFourthSecond !=null">#{QTFourthSecond},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		<choose>
+			<when test="QTFourthThird !=null">#{QTFourthThird},</when>
+			<otherwise>null,</otherwise>
+		</choose>
+		#{point2text},
+		#{point3text},
+		#{point4text},
+		#{point5text},
+		#{point6text},
+		#{point7text},
+		#{point8text},
+		null,
+		null
+    	);
+    </insert>
+    <select id="querySingle" resultType="java.util.Map">
+    	select a.*,b.name projectName,d.name provinceName,c.* from `user_projects` a,`project` b, `users` c,province d where a.`projectId`=b.`id` and a.`userId`=c.`id` and `userId`=#{userId} and `projectId`=#{projectId} and b.provinceId=d.id limit 0,1
+    </select>
+    <update id="approve">
+    	update `user_projects` set
+    	<if test="userId !=null">
+    		<if test="projectId!=null">
+		    	<if test="status!=null">
+		    		`status`=#{status},
+		    	</if>
+		    	<if test="provinceSuggestion!=null">
+		    		`provinceSuggestion`=#{provinceSuggestion}
+		    	</if>
+		    	<if test="finalSuggestion!=null">
+		    		`finalSuggestion`=#{finalSuggestion}
+		    	</if>
+		    	<where>
+		    		`userId`=#{userId} and `projectId`=#{projectId}
+		    	</where>
+    		</if>
+    	</if>
+    	
+    </update>
+    <!-- 图表统计 -->
+    <select id="listAll" resultType="java.util.Map" >
+    	SELECT IFNULL(count(*), 0) as sun,NAME as projectName from project where endTime BETWEEN #{startTime} and #{endTime} and `status`=1 GROUP BY `name`;
+    </select>
+</mapper>

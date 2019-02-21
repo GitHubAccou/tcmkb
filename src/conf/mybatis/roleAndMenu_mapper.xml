@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roleAndMenu">
+    <select id="listAll" resultType="java.util.Map" >
+    	select b.name,b.desc, GROUP_CONCAT(c.name) menus from role_menu a,role b,menu c where a.roleId=b.id and a.menuId=c.path  GROUP BY a.roleId;
+    </select>
+    <select id="roleRightList" resultType="java.util.Map" >
+    	select a.path,a.name,IF(roleId=#{roleId},1,0) checked from menu a left join (select * from role_menu where roleId=#{roleId}) b on a.path=b.menuId; 
+    </select>
+    <select id='ajaxAllRoleForSelect' resultType='java.util.Map'>
+    	select * from role;
+    </select>
+    <delete id="deleteRigthByRole">
+    	delete from role_menu where roleId=#{roleId};
+    </delete>
+    <insert id="addRightToRole">
+    	insert into role_menu values (#{roleId},#{menuId},#{createTime},#{createUser},null,null);
+    </insert>
+    <select id="getRoleByUserId" resultType="java.util.Map">
+    	select * from role_menu where userId=#{userId};
+    </select>
+     <select id="listByRole" resultType="java.util.Map" >
+        select * from `menu` where `path` in(select `menuId` from `role_menu` where `roleId` =#{roleId}) order by path asc;
+    </select>
+    <delete id="delete">
+    	delete from role_menu 
+    	<where>
+    		<if test="roleIds != null">
+    			 `roleId` in 
+		         <foreach item="item" open="(" close=")" separator="," collection="roleIds">
+    				#{item}
+    			</foreach>
+		    </if> 
+		    <if test="menuIds != null">
+		    	`menuId` in
+		        <foreach item="item" open="(" close=")" separator="," collection="menuIds">
+    				#{item}
+    			</foreach>
+		    </if>
+    	</where>
+    </delete>
+</mapper>

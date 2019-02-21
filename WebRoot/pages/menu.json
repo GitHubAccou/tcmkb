@@ -1,0 +1,45 @@
+[
+	{
+		"title":"首页",
+		"url":"test.jsp"
+	},
+	{
+		"html":"<a href='#'><i class='icon icon-user'></i>系统管理</a>",
+		"children":[
+			{
+				"html":"<a href='#' data-m='/tcmkb/users.php?go=listAll'><i class='icon icon-user'></i>用户管理</a>"
+			},
+			{
+				"html":"<a href='#' data-m='role.jsp'><i class='icon icon-user'></i>角色管理</a>"
+			},
+			{
+				"html":"<a href='#' data-m='auth.jsp'><i class='icon icon-key'></i>权限管理</a>"
+			},
+			{
+				"html":"<a href='#' data-m='menu.jsp'><i class='icon icon-th-list'></i>菜单管理</a>"
+			}
+		]
+	},
+	{
+		"html":"<a href='#'><i class='icon icon-stack'></i>项目管理</a>",
+		"children":[
+			{
+				"html":"<a href='#'><i class='icon icon-th-list'></i>项目审批</a>"
+			},
+			{
+				"html":"<a href='#'><i class='icon icon-th-list'></i>项目发布</a>"
+			}
+		]
+	},
+	{
+		"html":"<a href='#'><i class='icon icon-user'></i>个人中心</a>",
+		"children":[
+			{
+				"html":"<a href='#'><i class='icon icon-th-list'></i>个人资料</a>"
+			},
+			{
+				"html":"<a href='#'><i class='icon icon-bullhorn'></i>消息提醒</a>"
+			}
+		]
+	}
+]

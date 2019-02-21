@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  default-autowire="byName"
+       xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+    
+    <bean id="usersController" name="/users.php" class="com.tcmkb.controller.UsersController"/>
+    <bean id='roleAndMenuController' name='/auth.php' class='com.tcmkb.controller.RoleAndMenuController'/>
+    <bean id="menuController" name='/menus.php' class='com.tcmkb.controller.MenuController'/>
+    <bean id="rolesController" name='/roles.php' class='com.tcmkb.controller.RolesController'/>
+    <bean id='provinceController' name='/province.php' class='com.tcmkb.controller.ProvinceController'/>
+    <bean id="projectsController" name='/projects.php' class='com.tcmkb.controller.ProjectsController'/>
+    <bean id="userProjectController" name='/userProjects.php' class='com.tcmkb.controller.UserProjectController'/>
+    <bean id="msgController" name='/msgs.php' class='com.tcmkb.controller.MsgController'/>
+    <bean id="noticeController" name='/notice.php' class='com.tcmkb.controller.NoticeController'/>
+</beans>
